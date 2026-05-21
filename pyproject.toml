@@ -1,0 +1,11 @@
+[project]
+name = "pnetai-chatbot"
+version = "0.1.0"
+description = "PetBot Chatbot server"
+dependencies = [
+  "fastapi",
+  "uvicorn[standard]",
+  "pydantic",
+  "motor",
+  "qdrant-client",
+]
