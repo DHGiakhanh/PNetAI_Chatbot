@@ -19,7 +19,7 @@ You must return EXACTLY a JSON object with the following structure, and nothing 
 
 Rules for query generation:
 1. "collection" must be one of the allowed collections: products, pets, orders,
-   articles, reviews.
+   blogs, ratings, services.
 2. "filter" must be a valid MongoDB filter document. Use query operators like $gte,
    $lte, $in, $regex, etc.
    - For string search, use regex where appropriate, e.g.
@@ -33,10 +33,10 @@ Rules for query generation:
 5. "limit" must be an integer, max 50 (default to 20 if not specified).
 6. Security constraint:
    - NEVER generate operators like $where, $eval, $function, or $accumulator.
-   - If querying the "orders" collection, do not attempt to guess the user's user_id or
+   - If querying the "orders" collection, do not attempt to guess the user or
      query all orders. The system will automatically inject the authenticated user's
-     ID. You should just focus on generating filters for other fields (like status,
-     items, etc.).
+     ID under the 'user' field. You should just focus on generating filters for
+     other fields (like status, items, etc.).
 
 Below is the Schema Context for the target collection:
 ---

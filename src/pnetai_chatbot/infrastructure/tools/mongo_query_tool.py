@@ -70,8 +70,11 @@ class MongoQueryValidator:
                 raise ValueError(
                     "Access to 'orders' collection is denied for unauthenticated users."
                 )
-            # Force the authenticated user's user_id into the filter
-            filter_query["user_id"] = user_id
+            # Force the authenticated user's user into the filter as ObjectId
+            try:
+                filter_query["user"] = ObjectId(user_id)
+            except Exception:
+                filter_query["user"] = user_id
 
         # 5. Projection validation
         if projection:

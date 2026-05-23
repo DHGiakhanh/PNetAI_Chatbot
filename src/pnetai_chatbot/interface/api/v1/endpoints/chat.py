@@ -73,9 +73,25 @@ async def process_chat(
     Raises:
         HTTPException: 500 on database failure, or 403 on ownership violation.
     """
+    # 1. Resolve raw query with fallback support for natural field mapping
+    raw_query = request.query or request.message
+    if not raw_query:
+        raise HTTPException(
+            status_code=400,
+            detail="Either 'query' or 'message' field must be provided.",
+        )
+
+    # 2. Package location parameters if present
+    location_dict = None
+    if request.location:
+        location_dict = {
+            "coordinates": request.location.coordinates,
+            "addressName": request.location.addressName,
+        }
+
     logger.info(
         "Chat request received. Query: '%s', Stream: %s, User: %s",
-        request.query,
+        raw_query,
         request.stream,
         user.id,
     )
@@ -103,7 +119,7 @@ async def process_chat(
         try:
             assistant_msg = await chat_orchestrator.execute(
                 session_id=session.id,
-                query=request.query,
+                query=raw_query,
                 user_id=user.id,
                 is_authenticated=user.is_authenticated,
                 override_history=[
@@ -116,6 +132,7 @@ async def process_chat(
                     for h in history
                 ],
                 override_summary=session.summary,
+                location=location_dict,
             )
 
             # Map domain ToolCallResult to API response objects
@@ -155,7 +172,7 @@ async def process_chat(
             user_msg = Message.create_user_message(
                 message_id=uuid4(),
                 session_id=session.id,
-                content=request.query,
+                content=raw_query,
             )
             try:
                 await history_repo.insert(user_msg)
@@ -171,13 +188,13 @@ async def process_chat(
             for h in history
         ]
         initial_state = {
-            "query": request.query,
+            "query": raw_query,
             "session_id": str(session.id),
             "user_id": user.id,
             "is_authenticated": user.is_authenticated,
             "conversation_history": conversation_history,
             "session_summary": session.summary,
-            "messages": [{"role": "user", "content": request.query}],
+            "messages": [{"role": "user", "content": raw_query}],
             "tool_calls_made": [],
             "tool_results": {},
             "tools_to_execute": [],
@@ -185,6 +202,7 @@ async def process_chat(
             "final_response": None,
             "error": None,
             "iterations": 0,
+            "location": location_dict,
         }
 
         yield f"data: {json.dumps({'type': 'thinking', 'content': 'Đang phân tích câu hỏi...'}, ensure_ascii=False)}\n\n"

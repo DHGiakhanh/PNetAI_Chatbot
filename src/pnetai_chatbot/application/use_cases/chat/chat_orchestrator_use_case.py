@@ -57,6 +57,7 @@ class ChatOrchestratorUseCase:
         is_authenticated: bool = False,
         override_history: list[dict[str, Any]] | None = None,
         override_summary: str | None = None,
+        location: dict[str, Any] | None = None,
     ) -> Message:
         """Execute the LangGraph orchestrator loop.
 
@@ -129,6 +130,7 @@ class ChatOrchestratorUseCase:
             "final_response": None,
             "error": None,
             "iterations": 0,
+            "location": location,
         }
 
         # 4. Invoke compiled graph

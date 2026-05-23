@@ -2,7 +2,7 @@
 
 # Run the server in development mode
 run:
-	.venv/bin/uvicorn pnetai_chatbot.interface.api.v1.router:app --host 0.0.0.0 --port 8000 --reload
+	.venv/bin/uvicorn pnetai_chatbot.main:app --host 0.0.0.0 --port 8000 --reload
 
 # Alias for run
 dev: run

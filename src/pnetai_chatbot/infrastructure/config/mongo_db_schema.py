@@ -10,96 +10,143 @@ from typing import Any
 # Website DB schema (readonly, context-only)
 WEBSITE_DB_SCHEMA: dict[str, dict[str, Any]] = {
     "products": {
-        "description": "Sản phẩm thú cưng (thức ăn, phụ kiện, thuốc)",
+        "description": "Sản phẩm thú cưng (thức ăn, phụ kiện, cát vệ sinh, đồ chơi, sữa tắm...)",
         "fields": {
             "_id": "ObjectId — Khóa chính",
+            "providerId": "ObjectId — ID của nhà cung cấp sản phẩm",
             "name": "str — Tên sản phẩm",
-            "slug": "str — Tên thân thiện với URL",
-            "category": "str — Enum: dog_food|cat_food|accessories|medicine|...",
-            "tags": "list[str] — Các nhãn phân loại (ví dụ: poodle, puppy, small_breed, cat)",
-            "price": "int — Giá bán gốc bằng VNĐ",
-            "sale_price": "int | None — Giá khuyến mãi bằng VNĐ",
             "description": "str — Mô tả chi tiết sản phẩm",
-            "brand": "str — Thương hiệu sản phẩm",
-            "images": "list[str] — Danh sách URLs ảnh sản phẩm",
+            "price": "int — Giá bán của sản phẩm bằng VNĐ",
+            "category": "str — Danh mục sản phẩm (ví dụ: thức ăn, cát vệ sinh, phụ kiện...)",
+            "images": "list[str] — Danh sách URLs hình ảnh sản phẩm",
             "stock": "int — Số lượng hàng còn trong kho",
-            "is_active": "bool — Trạng thái sản phẩm (true nếu đang bán)",
-            "rating": "float — Điểm đánh giá trung bình (1.0 - 5.0)",
-            "review_count": "int — Số lượt đánh giá",
-            "created_at": "datetime — Thời gian tạo sản phẩm",
+            "isHot": "bool — Sản phẩm bán chạy/nổi bật (true nếu có)",
+            "isRecommended": "bool — Sản phẩm được đề xuất tốt (true nếu có)",
+            "averageRating": "int — Điểm đánh giá trung bình từ người dùng (1-5)",
+            "totalReviews": "int — Tổng số lượt đánh giá",
+            "status": "str — Trạng thái sản phẩm (ví dụ: 'active')",
+            "tags": "list[str] — Các nhãn phân loại bổ sung (ví dụ: 'chó', 'mèo', 'cún con', 'hạt')",
+            "isDeleted": "bool — Đã bị xóa hay chưa (true nếu đã bị xóa mềm)",
+            "createdAt": "datetime — Thời gian tạo sản phẩm",
+            "updatedAt": "datetime — Thời gian cập nhật sản phẩm",
         },
-        "indexes": ["category", "tags", "price", "brand", "is_active"],
-        "sample_queries": [
-            "Tìm sản phẩm theo category + price range",
-            "Tìm sản phẩm theo brand",
-            "Tìm sản phẩm theo tags (loài thú, kích cỡ, ...)",
-        ],
+        "indexes": ["category", "tags", "price", "isHot", "isRecommended"],
     },
     "pets": {
-        "description": "Thú cưng đang bán tại cửa hàng",
+        "description": "Thông tin thú cưng của người dùng hệ thống",
         "fields": {
             "_id": "ObjectId — Khóa chính",
+            "user": "ObjectId — ID của người dùng sở hữu thú cưng này",
             "name": "str — Tên thú cưng",
-            "species": "str — Loài thú (Enum: dog|cat|bird|fish|rabbit|...)",
-            "breed": "str — Giống thú cưng (ví dụ: Poodle, Corgi, British Shorthair)",
-            "age_months": "int — Tuổi của thú cưng tính theo tháng",
+            "species": "str — Loài thú cưng (ví dụ: dog, cat, bird...)",
+            "breed": "str — Giống thú cưng (ví dụ: Poodle, Corgi, mèo Anh lông ngắn...)",
             "gender": "str — Giới tính (male|female)",
-            "price": "int — Giá bán bằng VNĐ",
-            "health_status": "str — Tình trạng sức khỏe",
-            "vaccinated": "bool — Đã tiêm phòng đầy đủ hay chưa",
-            "images": "list[str] — Danh sách URLs hình ảnh thú cưng",
-            "is_available": "bool — Thú cưng còn có sẵn để nhận nuôi/mua hay không (true nếu còn)",
-            "description": "str — Mô tả tính cách, đặc điểm thú cưng",
+            "age": "int — Tuổi của thú cưng",
+            "birthday": "datetime — Ngày sinh của thú cưng",
+            "weightKg": "float | int — Cân nặng của thú cưng bằng kg",
+            "isSpayed": "bool — Đã triệt sản hay chưa (true nếu đã triệt sản)",
+            "healthStatus": "str — Tình trạng sức khỏe hiện tại",
+            "allergies": "str — Các thông tin dị ứng của thú cưng",
+            "medicalHistory": "str — Tiểu sử bệnh án/lịch sử y tế",
+            "avatarUrl": "str — URL ảnh đại diện của thú cưng",
+            "notes": "str — Các ghi chú đặc biệt khác về thú cưng",
+            "createdAt": "datetime — Thời gian tạo",
+            "updatedAt": "datetime — Thời gian cập nhật",
         },
-        "indexes": ["species", "breed", "price", "is_available"],
+        "indexes": ["species", "breed", "user"],
     },
     "orders": {
         "description": (
-            "Đơn hàng của khách hàng — CHỈ được query khi người dùng đã đăng nhập "
-            "(is_authenticated) và muốn tìm kiếm đơn hàng CỦA HỌ."
+            "Đơn hàng mua sản phẩm thú cưng — CHỈ được truy vấn khi người dùng đã đăng nhập "
+            "(is_authenticated) và hệ thống sẽ tự động lọc theo ID của họ."
         ),
         "fields": {
             "_id": "ObjectId — Khóa chính đơn hàng",
-            "user_id": "str — Mã người dùng sở hữu đơn hàng này (ObjectId dưới dạng chuỗi)",
+            "user": "ObjectId — ID người dùng sở hữu đơn hàng (đã được xác thực)",
             "items": (
-                "list[{product_id: str, name: str, quantity: int, price: int}] "
-                "— Danh sách mặt hàng mua"
+                "list[{product: ObjectId, name: str, quantity: int, price: int}] "
+                "— Danh sách sản phẩm trong đơn hàng"
             ),
-            "total": "int — Tổng số tiền của đơn hàng",
+            "totalAmount": "int — Tổng số tiền thanh toán của đơn hàng bằng VNĐ",
+            "shippingAddress": (
+                "dict — Thông tin địa chỉ nhận hàng gồm {name: str, phone: str, address: str}"
+            ),
             "status": (
-                "str — Trạng thái đơn hàng (pending|confirmed|shipping|delivered|cancelled)"
+                "str — Trạng thái đơn hàng (ví dụ: pending, confirmed, shipping, delivered, cancelled)"
             ),
-            "created_at": "datetime — Thời gian tạo đơn hàng",
+            "paymentMethod": "str — Phương thức thanh toán (ví dụ: cod, payos...)",
+            "paymentStatus": "str — Trạng thái thanh toán",
+            "createdAt": "datetime — Thời gian tạo đơn hàng",
+            "updatedAt": "datetime — Thời gian cập nhật đơn hàng",
+            "shippingMethod": "str — Phương thức vận chuyển",
+            "paidAt": "datetime | None — Thời điểm thanh toán thành công",
         },
-        "security_note": "ALWAYS filter by user_id khi query collection này",
+        "security_note": "Hệ thống sẽ luôn tự động áp bộ lọc field 'user' trùng với ID người dùng",
     },
-    "articles": {
-        "description": "Bài viết kiến thức, tin tức chăm sóc thú cưng",
+    "blogs": {
+        "description": "Bài viết chia sẻ kiến thức, tin tức chăm sóc sức khỏe thú cưng",
         "fields": {
             "_id": "ObjectId — Khóa chính bài viết",
             "title": "str — Tiêu đề bài viết",
-            "content": "str — Nội dung bài viết",
-            "category": "str — Thể loại bài viết",
-            "tags": "list[str] — Nhãn phân loại",
-            "published_at": "datetime — Thời gian đăng bài",
+            "content": "str — Nội dung chi tiết bài viết",
+            "author": "ObjectId — ID tác giả bài viết",
+            "category": "str — Danh mục bài viết (ví dụ: Dinh dưỡng, Chăm sóc, Huấn luyện...)",
+            "image": "str — URL ảnh đại diện bài viết",
+            "isHot": "bool — Bài viết nổi bật/nhiều người đọc (true nếu có)",
+            "views": "int — Lượt xem bài viết",
+            "status": "str — Trạng thái bài viết (ví dụ: 'active')",
+            "createdAt": "datetime — Thời gian đăng bài",
+            "updatedAt": "datetime — Thời gian cập nhật",
+            "comments": "list — Danh sách bình luận",
+            "likes": "list[ObjectId] — Danh sách ID người dùng thích bài viết",
+            "dislikes": "list — Danh sách người dùng không thích bài viết",
         },
+        "indexes": ["title", "category", "isHot"],
     },
-    "reviews": {
-        "description": "Đánh giá sản phẩm của người dùng",
+    "ratings": {
+        "description": "Đánh giá và phản hồi của người dùng về sản phẩm",
         "fields": {
             "_id": "ObjectId — Khóa chính đánh giá",
-            "product_id": "str — ID sản phẩm được đánh giá",
-            "user_id": "str — ID người dùng đánh giá",
-            "username": "str — Tên hiển thị người dùng",
-            "rating": "int — Số sao đánh giá (1-5)",
-            "comment": "str — Nội dung bình luận",
-            "created_at": "datetime — Thời gian đánh giá",
+            "product": "ObjectId — ID sản phẩm được đánh giá",
+            "user": "ObjectId — ID người dùng gửi đánh giá",
+            "rating": "int — Số sao đánh giá từ 1 đến 5",
+            "comment": "str — Nội dung đánh giá/phản hồi chi tiết",
+            "createdAt": "datetime — Thời gian đánh giá",
+            "updatedAt": "datetime — Thời gian cập nhật",
         },
+    },
+    "services": {
+        "description": "Các dịch vụ chăm sóc thú cưng có sẵn tại hệ thống (Khám bệnh, Grooming, Spa, Lưu chuồng)",
+        "fields": {
+            "_id": "ObjectId — Khóa chính dịch vụ",
+            "title": "str — Tên dịch vụ",
+            "description": "str — Mô tả chi tiết dịch vụ",
+            "category": "str — Danh mục dịch vụ (ví dụ: grooming, clinic, spa, hotel...)",
+            "basePrice": "int — Giá cơ bản của dịch vụ bằng VNĐ",
+            "duration": "int — Thời gian thực hiện tính bằng phút",
+            "images": "list[str] — Danh sách URLs hình ảnh của dịch vụ",
+            "features": "list[str] — Các tính năng, tiện ích đi kèm của dịch vụ",
+            "isPopular": "bool — Dịch vụ phổ biến/yêu thích (true nếu có)",
+            "isAvailable": "bool — Trạng thái hoạt động của dịch vụ (true nếu sẵn sàng phục vụ)",
+            "averageRating": "float | int — Điểm đánh giá trung bình từ khách hàng (1-5)",
+            "totalReviews": "int — Tổng số lượt đánh giá dịch vụ",
+            "providerId": "ObjectId — ID của nhà cung cấp/phòng khám cung cấp dịch vụ này",
+            "location": (
+                "dict — Địa điểm cung cấp gồm {address: str, city: str, coordinates: {lat: float, lng: float}}"
+            ),
+            "availability": (
+                "dict — Lịch hoạt động gồm {days: list[str], hours: {start: str, end: str}}"
+            ),
+            "createdAt": "datetime — Lập ngày dịch vụ",
+            "updatedAt": "datetime — Cập nhật ngày dịch vụ",
+            "tags": "list[str] — Các nhãn phân loại (ví dụ: 'tắm rửa', 'khám', 'cắt lông', 'chó', 'mèo')",
+        },
+        "indexes": ["category", "basePrice", "isAvailable", "isPopular"],
     },
 }
 
 # Whitelist of allowed collections for query generation
-ALLOWED_COLLECTIONS: set[str] = {"products", "pets", "orders", "articles", "reviews"}
+ALLOWED_COLLECTIONS: set[str] = {"products", "pets", "orders", "blogs", "ratings", "services"}
 
 # Forbidden operators to prevent MongoDB injection / execution exploitation
 FORBIDDEN_OPERATORS: set[str] = {"$where", "$eval", "$function", "$accumulator"}

@@ -39,3 +39,4 @@ class AgentState(TypedDict):
     final_response: str | None
     error: str | None
     iterations: int
+    location: dict[str, Any] | None
