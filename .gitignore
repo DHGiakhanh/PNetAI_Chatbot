@@ -53,6 +53,7 @@ htmlcov/
 .tox/
 *.cover
 .coverage.*
+.ruff_cache/
 
 # ===== uv / Python tooling =====
 # uv.lock is committed for reproducible builds
