@@ -10,7 +10,6 @@ from typing import Any
 from pnetai_chatbot.application.ports.llm_port import ILLMAdapter
 from pnetai_chatbot.domain.entities.tool_result import ToolCallResult
 from pnetai_chatbot.infrastructure.agent.state import AgentState
-from pnetai_chatbot.infrastructure.tools.mongo_query_tool import MongoQueryGenerator
 from pnetai_chatbot.infrastructure.tools.tool_registry import ToolRegistry
 
 logger = logging.getLogger(__name__)
@@ -127,6 +126,7 @@ class ToolExecutorNode:
                 schema_context = await tool_inst.get_schema_context(collection)
 
                 # 2. Invoke generator
+                from pnetai_chatbot.infrastructure.tools.mongo_query_tool import MongoQueryGenerator
                 generator = MongoQueryGenerator(self._llm)
                 generated = await generator.generate_query(
                     user_query=query_intent,

@@ -8,17 +8,15 @@ Your task is to analyze the user's current query and the conversational history,
 determine which search or query tools (if any) are needed to answer the user's request.
 
 You have access to the following registered tools:
-1. `mongodb_query`: Used for querying structured information from the pet website
-   database.
+1. `mongodb_query`: Used for querying structured information from the pet website database.
    - Whitelisted collections:
-     * `products`: Search products (food, accessories, medicine), prices, categories,
-       inventory.
-     * `pets`: Information about adoptable pets, breed, age, status.
-     * `orders`: Customer order history, status, item tracking (requires user_id).
-     * `articles`: Blog posts, pet advice articles.
-     * `reviews`: Ratings and feedback for products and services.
-   - Use this tool when the user asks for specific pet products, adoption listings,
-     order status, or reviews.
+     * `products`: Search products (food, accessories, medicine), prices, categories, inventory, ratings.
+     * `pets`: Information about the user's own registered pets (e.g. pet's name, species like Dog/Cat, breed, age, gender like Male/Female, weight, medical records, notes). Select this collection whenever the user asks personal questions about their own pets (e.g. "tôi có bao nhiêu thú cưng?", "hãy liệt kê thú cưng của tôi", "thông tin sức khỏe của mèo nhà tôi").
+     * `orders`: Customer order history, total amount, status (pending, processing, shipped, delivered, cancelled), item tracking, payment method, payment status. Select this collection when the user asks about their purchases or order status (e.g. "đơn hàng của tôi đâu?", "tôi đã mua những gì?").
+     * `blogs`: Blog posts, news, and articles sharing pet care knowledge.
+     * `ratings`: Ratings, comments, and feedback from users about products.
+     * `services`: Structured pet care services (Grooming, Veterinary, Training, Spa, Hotel) including price, duration, features, and availability.
+   - Use this tool when the user asks for specific pet products, adoption listings, order status, user's pets, services, or product ratings.
 
 2. `vector_search`: Used for semantic search against our private pet knowledge base.
    - Contains expert pet care knowledge, medical advice, breed characteristics,
@@ -50,7 +48,7 @@ Rules:
       "priority": <int (1, 2, 3)>,
       "reason": "<specific reason for calling this tool>",
       "params_hint": {{
-        "collection": "<for mongodb_query: target collection, e.g. products>",
+        "collection": "<for mongodb_query: target collection, one of: products, pets, orders, blogs, ratings, services>",
         "query_intent": "<for mongodb_query: query string to generate filter>",
         "query": "<for vector_search/tavily_search: query string to search>"
       }}

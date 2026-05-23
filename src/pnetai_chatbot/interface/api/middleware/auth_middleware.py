@@ -65,11 +65,11 @@ class AuthMiddleware(BaseHTTPMiddleware):
                 settings.jwt_secret,
                 algorithms=[settings.jwt_algorithm],
             )
-            # Try to get subject/user_id from JWT payload
-            user_id = payload.get("sub") or payload.get("user_id")
+            # Try to get subject/user_id/userId from JWT payload
+            user_id = payload.get("sub") or payload.get("user_id") or payload.get("userId")
 
             if not user_id:
-                logger.warning("JWT missing sub or user_id identity claims")
+                logger.warning("JWT missing sub, user_id, or userId identity claims")
                 return JSONResponse(
                     status_code=401,
                     content={"detail": "Missing identity claims in token"},

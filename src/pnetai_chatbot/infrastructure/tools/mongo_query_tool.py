@@ -64,11 +64,11 @@ class MongoQueryValidator:
         max_limit = 50
         validated_limit = min(max(1, limit), max_limit)
 
-        # 4. Security constraint for 'orders' collection
-        if collection == "orders":
+        # 4. Security constraint for 'orders' and 'pets' collections
+        if collection in ("orders", "pets"):
             if not user_id:
                 raise ValueError(
-                    "Access to 'orders' collection is denied for unauthenticated users."
+                    f"Access to '{collection}' collection is denied for unauthenticated users."
                 )
             # Force the authenticated user's user into the filter as ObjectId
             try:

@@ -1,0 +1,2340 @@
+{
+    "PNetAI": {
+        "collections_count": 19,
+        "collections": {
+            "posts": {
+                "info": "Empty collection",
+                "schema": {}
+            },
+            "services": {
+                "info": "Empty collection",
+                "schema": {}
+            },
+            "pets": {
+                "info": "Empty collection",
+                "schema": {}
+            },
+            "ratings": {
+                "info": "Empty collection",
+                "schema": {}
+            },
+            "carts": {
+                "document_count": 1,
+                "sample_analyzed": 1,
+                "schema": {
+                    "_id": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "user": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "items": {
+                        "type": "array",
+                        "item_types": []
+                    },
+                    "totalAmount": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "updatedAt": {
+                        "type": [
+                            "datetime"
+                        ]
+                    },
+                    "__v": {
+                        "type": [
+                            "integer"
+                        ]
+                    }
+                }
+            },
+            "leads": {
+                "info": "Empty collection",
+                "schema": {}
+            },
+            "products": {
+                "info": "Empty collection",
+                "schema": {}
+            },
+            "users": {
+                "document_count": 9,
+                "sample_analyzed": 9,
+                "schema": {
+                    "_id": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "email": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "password": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "name": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "role": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "isVerified": {
+                        "type": [
+                            "boolean"
+                        ]
+                    },
+                    "createdAt": {
+                        "type": [
+                            "datetime"
+                        ]
+                    },
+                    "__v": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "phone": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "address": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "saleCode": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "customerCode": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "partnerType": {
+                        "type": [
+                            "string"
+                        ]
+                    }
+                }
+            },
+            "appointments": {
+                "info": "Empty collection",
+                "schema": {}
+            },
+            "follows": {
+                "info": "Empty collection",
+                "schema": {}
+            },
+            "comments": {
+                "info": "Empty collection",
+                "schema": {}
+            },
+            "categories": {
+                "info": "Empty collection",
+                "schema": {}
+            },
+            "orders": {
+                "info": "Empty collection",
+                "schema": {}
+            },
+            "carousels": {
+                "info": "Empty collection",
+                "schema": {}
+            },
+            "supporttickets": {
+                "info": "Empty collection",
+                "schema": {}
+            },
+            "systemsettings": {
+                "info": "Empty collection",
+                "schema": {}
+            },
+            "likes": {
+                "info": "Empty collection",
+                "schema": {}
+            },
+            "blogs": {
+                "info": "Empty collection",
+                "schema": {}
+            },
+            "partnerapplications": {
+                "document_count": 1,
+                "sample_analyzed": 1,
+                "schema": {
+                    "_id": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "user": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "businessName": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "partnerType": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "licenseFiles": {
+                        "type": "array",
+                        "item_types": []
+                    },
+                    "status": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "createdAt": {
+                        "type": [
+                            "datetime"
+                        ]
+                    },
+                    "updatedAt": {
+                        "type": [
+                            "datetime"
+                        ]
+                    },
+                    "__v": {
+                        "type": [
+                            "integer"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "sample_mflix": {
+        "collections_count": 6,
+        "collections": {
+            "comments": {
+                "document_count": 41079,
+                "sample_analyzed": 41079,
+                "schema": {
+                    "_id": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "name": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "email": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "movie_id": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "text": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "date": {
+                        "type": [
+                            "datetime"
+                        ]
+                    }
+                }
+            },
+            "sessions": {
+                "document_count": 1,
+                "sample_analyzed": 1,
+                "schema": {
+                    "_id": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "user_id": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "jwt": {
+                        "type": [
+                            "string"
+                        ]
+                    }
+                }
+            },
+            "users": {
+                "document_count": 185,
+                "sample_analyzed": 185,
+                "schema": {
+                    "_id": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "name": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "email": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "password": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "preferences": {
+                        "type": "object",
+                        "properties": {}
+                    }
+                }
+            },
+            "theaters": {
+                "document_count": 1564,
+                "sample_analyzed": 1564,
+                "schema": {
+                    "_id": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "theaterId": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "location": {
+                        "type": "object",
+                        "properties": {
+                            "address": {
+                                "type": "object",
+                                "properties": {
+                                    "street1": {
+                                        "type": [
+                                            "string"
+                                        ]
+                                    },
+                                    "city": {
+                                        "type": [
+                                            "string"
+                                        ]
+                                    },
+                                    "state": {
+                                        "type": [
+                                            "string"
+                                        ]
+                                    },
+                                    "zipcode": {
+                                        "type": [
+                                            "string"
+                                        ]
+                                    },
+                                    "street2": {
+                                        "type": [
+                                            "string",
+                                            "null"
+                                        ]
+                                    }
+                                }
+                            },
+                            "geo": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": [
+                                            "string"
+                                        ]
+                                    },
+                                    "coordinates": {
+                                        "type": "array",
+                                        "item_types": [
+                                            "float"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "embedded_movies": {
+                "document_count": 3483,
+                "sample_analyzed": 3483,
+                "schema": {
+                    "_id": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "plot": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "genres": {
+                        "type": "array",
+                        "item_types": [
+                            "string"
+                        ]
+                    },
+                    "runtime": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "rated": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "cast": {
+                        "type": "array",
+                        "item_types": [
+                            "string"
+                        ]
+                    },
+                    "num_mflix_comments": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "poster": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "title": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "fullplot": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "languages": {
+                        "type": "array",
+                        "item_types": [
+                            "string"
+                        ]
+                    },
+                    "released": {
+                        "type": [
+                            "datetime"
+                        ]
+                    },
+                    "directors": {
+                        "type": "array",
+                        "item_types": [
+                            "string"
+                        ]
+                    },
+                    "writers": {
+                        "type": "array",
+                        "item_types": [
+                            "string"
+                        ]
+                    },
+                    "awards": {
+                        "type": "object",
+                        "properties": {
+                            "wins": {
+                                "type": [
+                                    "integer"
+                                ]
+                            },
+                            "nominations": {
+                                "type": [
+                                    "integer"
+                                ]
+                            },
+                            "text": {
+                                "type": [
+                                    "string"
+                                ]
+                            }
+                        }
+                    },
+                    "lastupdated": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "year": {
+                        "type": [
+                            "integer",
+                            "string"
+                        ]
+                    },
+                    "imdb": {
+                        "type": "object",
+                        "properties": {
+                            "rating": {
+                                "type": [
+                                    "float",
+                                    "string"
+                                ]
+                            },
+                            "votes": {
+                                "type": [
+                                    "integer",
+                                    "string"
+                                ]
+                            },
+                            "id": {
+                                "type": [
+                                    "integer"
+                                ]
+                            }
+                        }
+                    },
+                    "countries": {
+                        "type": "array",
+                        "item_types": [
+                            "string"
+                        ]
+                    },
+                    "type": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "tomatoes": {
+                        "type": "object",
+                        "properties": {
+                            "viewer": {
+                                "type": "object",
+                                "properties": {
+                                    "rating": {
+                                        "type": [
+                                            "float"
+                                        ]
+                                    },
+                                    "numReviews": {
+                                        "type": [
+                                            "integer"
+                                        ]
+                                    },
+                                    "meter": {
+                                        "type": [
+                                            "integer"
+                                        ]
+                                    }
+                                }
+                            },
+                            "dvd": {
+                                "type": [
+                                    "datetime"
+                                ]
+                            },
+                            "critic": {
+                                "type": "object",
+                                "properties": {
+                                    "rating": {
+                                        "type": [
+                                            "float"
+                                        ]
+                                    },
+                                    "numReviews": {
+                                        "type": [
+                                            "integer"
+                                        ]
+                                    },
+                                    "meter": {
+                                        "type": [
+                                            "integer"
+                                        ]
+                                    }
+                                }
+                            },
+                            "lastUpdated": {
+                                "type": [
+                                    "datetime"
+                                ]
+                            },
+                            "rotten": {
+                                "type": [
+                                    "integer"
+                                ]
+                            },
+                            "production": {
+                                "type": [
+                                    "string"
+                                ]
+                            },
+                            "fresh": {
+                                "type": [
+                                    "integer"
+                                ]
+                            },
+                            "consensus": {
+                                "type": [
+                                    "string"
+                                ]
+                            },
+                            "website": {
+                                "type": [
+                                    "string"
+                                ]
+                            },
+                            "boxOffice": {
+                                "type": [
+                                    "string"
+                                ]
+                            }
+                        }
+                    },
+                    "plot_embedding": {
+                        "type": [
+                            "Binary"
+                        ]
+                    },
+                    "plot_embedding_voyage_3_large": {
+                        "type": [
+                            "Binary"
+                        ]
+                    },
+                    "metacritic": {
+                        "type": [
+                            "integer"
+                        ]
+                    }
+                }
+            },
+            "movies": {
+                "document_count": 21349,
+                "sample_analyzed": 21349,
+                "schema": {
+                    "_id": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "plot": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "genres": {
+                        "type": "array",
+                        "item_types": [
+                            "string"
+                        ]
+                    },
+                    "runtime": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "cast": {
+                        "type": "array",
+                        "item_types": [
+                            "string"
+                        ]
+                    },
+                    "poster": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "title": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "fullplot": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "languages": {
+                        "type": "array",
+                        "item_types": [
+                            "string"
+                        ]
+                    },
+                    "released": {
+                        "type": [
+                            "datetime"
+                        ]
+                    },
+                    "directors": {
+                        "type": "array",
+                        "item_types": [
+                            "string"
+                        ]
+                    },
+                    "rated": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "awards": {
+                        "type": "object",
+                        "properties": {
+                            "wins": {
+                                "type": [
+                                    "integer"
+                                ]
+                            },
+                            "nominations": {
+                                "type": [
+                                    "integer"
+                                ]
+                            },
+                            "text": {
+                                "type": [
+                                    "string"
+                                ]
+                            }
+                        }
+                    },
+                    "lastupdated": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "year": {
+                        "type": [
+                            "integer",
+                            "string"
+                        ]
+                    },
+                    "imdb": {
+                        "type": "object",
+                        "properties": {
+                            "rating": {
+                                "type": [
+                                    "float",
+                                    "string"
+                                ]
+                            },
+                            "votes": {
+                                "type": [
+                                    "integer",
+                                    "string"
+                                ]
+                            },
+                            "id": {
+                                "type": [
+                                    "integer"
+                                ]
+                            }
+                        }
+                    },
+                    "countries": {
+                        "type": "array",
+                        "item_types": [
+                            "string"
+                        ]
+                    },
+                    "type": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "tomatoes": {
+                        "type": "object",
+                        "properties": {
+                            "viewer": {
+                                "type": "object",
+                                "properties": {
+                                    "rating": {
+                                        "type": [
+                                            "float"
+                                        ]
+                                    },
+                                    "numReviews": {
+                                        "type": [
+                                            "integer"
+                                        ]
+                                    },
+                                    "meter": {
+                                        "type": [
+                                            "integer"
+                                        ]
+                                    }
+                                }
+                            },
+                            "fresh": {
+                                "type": [
+                                    "integer"
+                                ]
+                            },
+                            "critic": {
+                                "type": "object",
+                                "properties": {
+                                    "rating": {
+                                        "type": [
+                                            "float"
+                                        ]
+                                    },
+                                    "numReviews": {
+                                        "type": [
+                                            "integer"
+                                        ]
+                                    },
+                                    "meter": {
+                                        "type": [
+                                            "integer"
+                                        ]
+                                    }
+                                }
+                            },
+                            "rotten": {
+                                "type": [
+                                    "integer"
+                                ]
+                            },
+                            "lastUpdated": {
+                                "type": [
+                                    "datetime"
+                                ]
+                            },
+                            "dvd": {
+                                "type": [
+                                    "datetime"
+                                ]
+                            },
+                            "website": {
+                                "type": [
+                                    "string"
+                                ]
+                            },
+                            "production": {
+                                "type": [
+                                    "string"
+                                ]
+                            },
+                            "consensus": {
+                                "type": [
+                                    "string"
+                                ]
+                            },
+                            "boxOffice": {
+                                "type": [
+                                    "string"
+                                ]
+                            }
+                        }
+                    },
+                    "num_mflix_comments": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "writers": {
+                        "type": "array",
+                        "item_types": [
+                            "string"
+                        ]
+                    },
+                    "metacritic": {
+                        "type": [
+                            "integer"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "test": {
+        "collections_count": 17,
+        "collections": {
+            "carousels": {
+                "info": "Empty collection",
+                "schema": {}
+            },
+            "blogs": {
+                "document_count": 8,
+                "sample_analyzed": 8,
+                "schema": {
+                    "_id": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "title": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "content": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "author": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "category": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "image": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "isHot": {
+                        "type": [
+                            "boolean"
+                        ]
+                    },
+                    "views": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "status": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "createdAt": {
+                        "type": [
+                            "datetime"
+                        ]
+                    },
+                    "updatedAt": {
+                        "type": [
+                            "datetime"
+                        ]
+                    },
+                    "__v": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "reviewNote": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "reviewedAt": {
+                        "type": [
+                            "datetime"
+                        ]
+                    },
+                    "reviewedBy": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "comments": {
+                        "type": "array",
+                        "item_types": []
+                    },
+                    "likes": {
+                        "type": "array",
+                        "item_types": [
+                            "ObjectId"
+                        ]
+                    },
+                    "dislikes": {
+                        "type": "array",
+                        "item_types": []
+                    }
+                }
+            },
+            "carts": {
+                "document_count": 34,
+                "sample_analyzed": 34,
+                "schema": {
+                    "_id": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "user": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "items": {
+                        "type": "array",
+                        "item_types": [
+                            "object"
+                        ],
+                        "item_schema": {
+                            "product": {
+                                "type": [
+                                    "ObjectId"
+                                ]
+                            },
+                            "quantity": {
+                                "type": [
+                                    "integer"
+                                ]
+                            },
+                            "price": {
+                                "type": [
+                                    "float"
+                                ]
+                            },
+                            "_id": {
+                                "type": [
+                                    "ObjectId"
+                                ]
+                            }
+                        }
+                    },
+                    "totalAmount": {
+                        "type": [
+                            "float",
+                            "integer"
+                        ]
+                    },
+                    "updatedAt": {
+                        "type": [
+                            "datetime"
+                        ]
+                    },
+                    "__v": {
+                        "type": [
+                            "integer"
+                        ]
+                    }
+                }
+            },
+            "aihistories": {
+                "document_count": 66,
+                "sample_analyzed": 66,
+                "schema": {
+                    "_id": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "userId": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "question": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "answer": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "type": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "metadata": {
+                        "type": "object",
+                        "properties": {
+                            "model": {
+                                "type": [
+                                    "string"
+                                ]
+                            }
+                        }
+                    },
+                    "createdAt": {
+                        "type": [
+                            "datetime"
+                        ]
+                    },
+                    "__v": {
+                        "type": [
+                            "integer"
+                        ]
+                    }
+                }
+            },
+            "users": {
+                "document_count": 45,
+                "sample_analyzed": 45,
+                "schema": {
+                    "_id": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "email": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "password": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "name": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "role": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "isVerified": {
+                        "type": [
+                            "boolean"
+                        ]
+                    },
+                    "createdAt": {
+                        "type": [
+                            "datetime"
+                        ]
+                    },
+                    "__v": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "articleCredits": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "bookingCapacity": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "clinicImages": {
+                        "type": "array",
+                        "item_types": []
+                    },
+                    "doctors": {
+                        "type": "array",
+                        "item_types": []
+                    },
+                    "lastLoginAt": {
+                        "type": [
+                            "datetime"
+                        ]
+                    },
+                    "operatingHours": {
+                        "type": "object",
+                        "properties": {
+                            "end": {
+                                "type": [
+                                    "string"
+                                ]
+                            },
+                            "start": {
+                                "type": [
+                                    "string"
+                                ]
+                            }
+                        }
+                    },
+                    "status": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "subscriptionPlan": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "location": {
+                        "type": "object",
+                        "properties": {
+                            "coordinates": {
+                                "type": "array",
+                                "item_types": [
+                                    "float"
+                                ]
+                            },
+                            "type": {
+                                "type": [
+                                    "string"
+                                ]
+                            },
+                            "addressName": {
+                                "type": [
+                                    "string"
+                                ]
+                            }
+                        }
+                    },
+                    "saleCode": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "managedBy": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "address": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "phone": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "avatarUrl": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "googleId": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "providerOnboardingStatus": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "legalDocuments": {
+                        "type": "object",
+                        "properties": {
+                            "clinicName": {
+                                "type": [
+                                    "string"
+                                ]
+                            },
+                            "clinicLicenseNumber": {
+                                "type": [
+                                    "string"
+                                ]
+                            },
+                            "clinicLicenseUrl": {
+                                "type": [
+                                    "string"
+                                ]
+                            },
+                            "businessLicenseUrl": {
+                                "type": [
+                                    "string"
+                                ]
+                            },
+                            "submissionNote": {
+                                "type": [
+                                    "string"
+                                ]
+                            },
+                            "submittedAt": {
+                                "type": [
+                                    "datetime"
+                                ]
+                            },
+                            "reviewedAt": {
+                                "type": [
+                                    "datetime"
+                                ]
+                            },
+                            "doctorLicenseUrl": {
+                                "type": [
+                                    "string"
+                                ]
+                            }
+                        }
+                    },
+                    "atelierConfig": {
+                        "type": "object",
+                        "properties": {
+                            "resourceCapacity": {
+                                "type": [
+                                    "integer"
+                                ]
+                            },
+                            "workingHours": {
+                                "type": "object",
+                                "properties": {
+                                    "end": {
+                                        "type": [
+                                            "string"
+                                        ]
+                                    },
+                                    "start": {
+                                        "type": [
+                                            "string"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "description": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "verificationToken": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "verificationTokenExpires": {
+                        "type": [
+                            "datetime"
+                        ]
+                    }
+                }
+            },
+            "products": {
+                "document_count": 45,
+                "sample_analyzed": 45,
+                "schema": {
+                    "_id": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "providerId": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "name": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "description": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "price": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "category": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "images": {
+                        "type": "array",
+                        "item_types": [
+                            "string"
+                        ]
+                    },
+                    "stock": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "isHot": {
+                        "type": [
+                            "boolean"
+                        ]
+                    },
+                    "isRecommended": {
+                        "type": [
+                            "boolean"
+                        ]
+                    },
+                    "averageRating": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "totalReviews": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "createdAt": {
+                        "type": [
+                            "datetime"
+                        ]
+                    },
+                    "updatedAt": {
+                        "type": [
+                            "datetime"
+                        ]
+                    },
+                    "__v": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "isDeleted": {
+                        "type": [
+                            "boolean"
+                        ]
+                    },
+                    "status": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "tags": {
+                        "type": "array",
+                        "item_types": [
+                            "string"
+                        ]
+                    },
+                    "deletedAt": {
+                        "type": [
+                            "null"
+                        ]
+                    }
+                }
+            },
+            "servicebookings": {
+                "document_count": 60,
+                "sample_analyzed": 60,
+                "schema": {
+                    "_id": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "user": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "service": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "pet": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "bookingDate": {
+                        "type": [
+                            "datetime"
+                        ]
+                    },
+                    "bookingTime": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "totalAmount": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "status": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "paymentMethod": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "createdAt": {
+                        "type": [
+                            "datetime"
+                        ]
+                    },
+                    "updatedAt": {
+                        "type": [
+                            "datetime"
+                        ]
+                    },
+                    "__v": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "duration": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "resourceIndex": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "note": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "petNote": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "clinicalNote": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "serviceNote": {
+                        "type": [
+                            "string"
+                        ]
+                    }
+                }
+            },
+            "payouts": {
+                "info": "Empty collection",
+                "schema": {}
+            },
+            "orders": {
+                "document_count": 36,
+                "sample_analyzed": 36,
+                "schema": {
+                    "_id": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "user": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "items": {
+                        "type": "array",
+                        "item_types": [
+                            "object"
+                        ],
+                        "item_schema": {
+                            "product": {
+                                "type": [
+                                    "ObjectId"
+                                ]
+                            },
+                            "name": {
+                                "type": [
+                                    "string"
+                                ]
+                            },
+                            "quantity": {
+                                "type": [
+                                    "integer"
+                                ]
+                            },
+                            "price": {
+                                "type": [
+                                    "integer"
+                                ]
+                            },
+                            "_id": {
+                                "type": [
+                                    "ObjectId"
+                                ]
+                            }
+                        }
+                    },
+                    "totalAmount": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "shippingAddress": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": [
+                                    "string"
+                                ]
+                            },
+                            "phone": {
+                                "type": [
+                                    "string"
+                                ]
+                            },
+                            "address": {
+                                "type": [
+                                    "string"
+                                ]
+                            }
+                        }
+                    },
+                    "status": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "paymentMethod": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "paymentStatus": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "inventoryReserved": {
+                        "type": [
+                            "boolean"
+                        ]
+                    },
+                    "createdAt": {
+                        "type": [
+                            "datetime"
+                        ]
+                    },
+                    "updatedAt": {
+                        "type": [
+                            "datetime"
+                        ]
+                    },
+                    "__v": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "payos": {
+                        "type": "object",
+                        "properties": {
+                            "orderCode": {
+                                "type": [
+                                    "float"
+                                ]
+                            },
+                            "paymentLinkId": {
+                                "type": [
+                                    "string"
+                                ]
+                            },
+                            "checkoutUrl": {
+                                "type": [
+                                    "string"
+                                ]
+                            },
+                            "qrCode": {
+                                "type": [
+                                    "string"
+                                ]
+                            },
+                            "status": {
+                                "type": [
+                                    "string"
+                                ]
+                            }
+                        }
+                    },
+                    "provider": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "group": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "subtotalAmount": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "shippingFee": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "shippingMethod": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "paidAt": {
+                        "type": [
+                            "datetime"
+                        ]
+                    }
+                }
+            },
+            "pets": {
+                "document_count": 30,
+                "sample_analyzed": 30,
+                "schema": {
+                    "_id": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "user": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "name": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "species": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "breed": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "gender": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "age": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "birthday": {
+                        "type": [
+                            "datetime"
+                        ]
+                    },
+                    "weightKg": {
+                        "type": [
+                            "integer",
+                            "float"
+                        ]
+                    },
+                    "isSpayed": {
+                        "type": [
+                            "boolean"
+                        ]
+                    },
+                    "healthStatus": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "allergies": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "medicalHistory": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "avatarUrl": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "notes": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "createdAt": {
+                        "type": [
+                            "datetime"
+                        ]
+                    },
+                    "updatedAt": {
+                        "type": [
+                            "datetime"
+                        ]
+                    },
+                    "__v": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "lastVisitDate": {
+                        "type": [
+                            "null",
+                            "datetime"
+                        ]
+                    },
+                    "medicalHistoryRecords": {
+                        "type": "array",
+                        "item_types": []
+                    },
+                    "correctionRequestMessage": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "moderationNote": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "moderationReason": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "moderationStatus": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "moderatedAt": {
+                        "type": [
+                            "datetime"
+                        ]
+                    },
+                    "moderatedBy": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "correctionRequestedAt": {
+                        "type": [
+                            "datetime"
+                        ]
+                    }
+                }
+            },
+            "ratings": {
+                "document_count": 3,
+                "sample_analyzed": 3,
+                "schema": {
+                    "_id": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "product": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "user": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "rating": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "comment": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "createdAt": {
+                        "type": [
+                            "datetime"
+                        ]
+                    },
+                    "updatedAt": {
+                        "type": [
+                            "datetime"
+                        ]
+                    },
+                    "__v": {
+                        "type": [
+                            "integer"
+                        ]
+                    }
+                }
+            },
+            "services": {
+                "document_count": 22,
+                "sample_analyzed": 22,
+                "schema": {
+                    "_id": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "title": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "description": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "category": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "basePrice": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "duration": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "images": {
+                        "type": "array",
+                        "item_types": [
+                            "string"
+                        ]
+                    },
+                    "features": {
+                        "type": "array",
+                        "item_types": [
+                            "string"
+                        ]
+                    },
+                    "isPopular": {
+                        "type": [
+                            "boolean"
+                        ]
+                    },
+                    "isAvailable": {
+                        "type": [
+                            "boolean"
+                        ]
+                    },
+                    "averageRating": {
+                        "type": [
+                            "float",
+                            "integer"
+                        ]
+                    },
+                    "totalReviews": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "providerId": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "location": {
+                        "type": "object",
+                        "properties": {
+                            "address": {
+                                "type": [
+                                    "string"
+                                ]
+                            },
+                            "city": {
+                                "type": [
+                                    "string"
+                                ]
+                            },
+                            "coordinates": {
+                                "type": "object",
+                                "properties": {
+                                    "lat": {
+                                        "type": [
+                                            "float",
+                                            "integer"
+                                        ]
+                                    },
+                                    "lng": {
+                                        "type": [
+                                            "float",
+                                            "integer"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "availability": {
+                        "type": "object",
+                        "properties": {
+                            "days": {
+                                "type": "array",
+                                "item_types": [
+                                    "string"
+                                ]
+                            },
+                            "hours": {
+                                "type": "object",
+                                "properties": {
+                                    "start": {
+                                        "type": [
+                                            "string"
+                                        ]
+                                    },
+                                    "end": {
+                                        "type": [
+                                            "string"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "createdAt": {
+                        "type": [
+                            "datetime"
+                        ]
+                    },
+                    "updatedAt": {
+                        "type": [
+                            "datetime"
+                        ]
+                    },
+                    "__v": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "tags": {
+                        "type": "array",
+                        "item_types": [
+                            "string"
+                        ]
+                    }
+                }
+            },
+            "blacklists": {
+                "info": "Empty collection",
+                "schema": {}
+            },
+            "notifications": {
+                "document_count": 5,
+                "sample_analyzed": 5,
+                "schema": {
+                    "_id": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "title": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "message": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "type": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "relatedId": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "isRead": {
+                        "type": [
+                            "boolean"
+                        ]
+                    },
+                    "isAdmin": {
+                        "type": [
+                            "boolean"
+                        ]
+                    },
+                    "createdAt": {
+                        "type": [
+                            "datetime"
+                        ]
+                    },
+                    "__v": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "user": {
+                        "type": [
+                            "ObjectId",
+                            "null"
+                        ]
+                    }
+                }
+            },
+            "ordergroups": {
+                "document_count": 7,
+                "sample_analyzed": 7,
+                "schema": {
+                    "_id": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "user": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "orders": {
+                        "type": "array",
+                        "item_types": [
+                            "ObjectId"
+                        ]
+                    },
+                    "subtotalAmount": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "shippingAmount": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "totalAmount": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "shippingMethod": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "paymentMethod": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "paymentStatus": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "shippingAddress": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": [
+                                    "string"
+                                ]
+                            },
+                            "phone": {
+                                "type": [
+                                    "string"
+                                ]
+                            },
+                            "address": {
+                                "type": [
+                                    "string"
+                                ]
+                            }
+                        }
+                    },
+                    "createdAt": {
+                        "type": [
+                            "datetime"
+                        ]
+                    },
+                    "updatedAt": {
+                        "type": [
+                            "datetime"
+                        ]
+                    },
+                    "__v": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "payos": {
+                        "type": "object",
+                        "properties": {
+                            "orderCode": {
+                                "type": [
+                                    "float"
+                                ]
+                            },
+                            "paymentLinkId": {
+                                "type": [
+                                    "string"
+                                ]
+                            },
+                            "checkoutUrl": {
+                                "type": [
+                                    "string"
+                                ]
+                            },
+                            "qrCode": {
+                                "type": [
+                                    "string"
+                                ]
+                            },
+                            "status": {
+                                "type": [
+                                    "string"
+                                ]
+                            }
+                        }
+                    },
+                    "paidAt": {
+                        "type": [
+                            "datetime"
+                        ]
+                    }
+                }
+            },
+            "categories": {
+                "document_count": 6,
+                "sample_analyzed": 6,
+                "schema": {
+                    "_id": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "name": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "description": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "icon": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "color": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "isActive": {
+                        "type": [
+                            "boolean"
+                        ]
+                    },
+                    "sortOrder": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "createdAt": {
+                        "type": [
+                            "datetime"
+                        ]
+                    },
+                    "updatedAt": {
+                        "type": [
+                            "datetime"
+                        ]
+                    },
+                    "__v": {
+                        "type": [
+                            "integer"
+                        ]
+                    }
+                }
+            },
+            "transactions": {
+                "document_count": 47,
+                "sample_analyzed": 47,
+                "schema": {
+                    "_id": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "user": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "type": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "amount": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "status": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "paymentMethod": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "payosOrderCode": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "note": {
+                        "type": [
+                            "string"
+                        ]
+                    },
+                    "createdAt": {
+                        "type": [
+                            "datetime"
+                        ]
+                    },
+                    "updatedAt": {
+                        "type": [
+                            "datetime"
+                        ]
+                    },
+                    "__v": {
+                        "type": [
+                            "integer"
+                        ]
+                    },
+                    "provider": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    },
+                    "referenceId": {
+                        "type": [
+                            "ObjectId"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

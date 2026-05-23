@@ -33,10 +33,22 @@ Rules for query generation:
 5. "limit" must be an integer, max 50 (default to 20 if not specified).
 6. Security constraint:
    - NEVER generate operators like $where, $eval, $function, or $accumulator.
-   - If querying the "orders" collection, do not attempt to guess the user or
-     query all orders. The system will automatically inject the authenticated user's
-     ID under the 'user' field. You should just focus on generating filters for
-     other fields (like status, items, etc.).
+   - If querying the "orders" or "pets" collection, do not attempt to guess or search the user field, or query all records. The system will automatically inject the authenticated user's ID under the 'user' field in the filter. You should focus on generating filters for other fields (like status, items, name, breed, species, gender, age, etc.).
+7. Language Translation & Value Mapping Rules:
+   Since the user queries in Vietnamese but the database contains values in English, you MUST translate natural language concepts in the user query into their exact database English equivalents when generating the filter document:
+   - For `pets` collection:
+     * Species ("loài"): Translate "chó" -> "Dog", "mèo" -> "Cat", "chim" -> "Bird", "thỏ" -> "Rabbit", "chuột/chuột hamster" -> "Hamster", "khác" -> "Other". E.g., {{"species": "Dog"}}.
+     * Gender ("giới tính"): Translate "đực/con đực" -> "Male", "cái/con cái" -> "Female", "không rõ" -> "Unknown". E.g., {{"gender": "Male"}}.
+   - For `orders` collection:
+     * Status ("trạng thái"): Translate "chờ thanh toán/chờ xử lý" -> "pending", "đang xử lý" -> "processing", "đang giao/đang giao hàng" -> "shipped", "đã giao/đã nhận" -> "delivered", "đã hủy" -> "cancelled", "yêu cầu trả hàng" -> "return_requested".
+     * Payment Method ("phương thức thanh toán"): Translate "tiền mặt/cod" -> "COD", "payos/chuyển khoản" -> "PAYOS".
+     * Payment Status ("thanh toán"): Translate "chưa thanh toán" -> "unpaid", "đang chờ" -> "pending", "đã thanh toán" -> "paid", "thất bại" -> "failed", "đã hủy" -> "cancelled", "chờ hoàn tiền" -> "refund_pending", "đã hoàn tiền" -> "refunded".
+     * Shipping Method ("vận chuyển/giao hàng"): Translate "tiêu chuẩn/thường" -> "standard", "hỏa tốc/nhanh" -> "express".
+   - For `services` collection:
+     * Category ("danh mục"): Translate "tắm rửa/grooming/cắt lông" -> "Grooming", "thú y/khám bệnh/phòng khám/clinic" -> "Veterinary", "huấn luyện/training" -> "Training", "spa" -> "Spa", "khách sạn/hotel/lưu chuồng" -> "Hotel".
+   - For `products` collection:
+     * Category ("danh mục"): Translate "thức ăn" -> "Food", "phụ kiện" -> "Accessories", "đồ chơi" -> "Toys", "tắm rửa/grooming/vệ sinh" -> "Grooming". E.g., {{"category": "Food"}}.
+     * Tags ("thẻ"): Translate Vietnamese keywords to English lowercase tags: "chó/cún" -> "dog", "mèo" -> "cat", "thức ăn" -> "food", "phụ kiện" -> "accessories", "cát vệ sinh" -> "cat_litter", "đồ chơi" -> "toys", "sữa tắm" -> "shampoo". For product status, "hoạt động" -> "active".
 
 Below is the Schema Context for the target collection:
 ---
