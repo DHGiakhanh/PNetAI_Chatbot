@@ -56,15 +56,33 @@ def route_after_analyzer(state: AgentState) -> str:
 class AgentOrchestrator:
     """Builder for the LangGraph multi-step ReAct orchestration pipeline."""
 
-    def __init__(self, registry: ToolRegistry, llm: ILLMAdapter) -> None:
+    def __init__(
+        self,
+        registry: ToolRegistry,
+        llm: ILLMAdapter,
+        response_llm: ILLMAdapter | None = None,
+    ) -> None:
         """Initialize the AgentOrchestrator.
 
         Args:
             registry: The tool registry instance containing active tool ports.
-            llm: The primary LLM adapter for reasoning and synthesis nodes.
+            llm: The primary LLM adapter for reasoning nodes (intent_analyzer,
+                 tool_executor). Should be a capable model that can follow
+                 structured JSON schemas and tool-calling conventions.
+            response_llm: Optional LLM adapter dedicated to the final response
+                 generation step (response_generator node). When ``None``, the
+                 primary ``llm`` is reused. Use this to route the last synthesis
+                 step to a fine-tuned / self-hosted model while keeping the
+                 reasoning steps on a stronger cloud-based model.
         """
         self._registry = registry
         self._llm = llm
+        self._response_llm = response_llm if response_llm is not None else llm
+        if response_llm is not None:
+            logger.info(
+                "AgentOrchestrator: using separate response LLM '%s' for response_generator node.",
+                response_llm.model_name,
+            )
 
     def build_agent_graph(self) -> Any:
         """Build and compile the LangGraph StateGraph.
@@ -79,7 +97,8 @@ class AgentOrchestrator:
         workflow.add_node("intent_analyzer", IntentAnalyzerNode(self._llm))
         workflow.add_node("tool_executor", ToolExecutorNode(self._registry, self._llm))
         workflow.add_node("context_merger", ContextMergerNode())
-        workflow.add_node("response_generator", ResponseGeneratorNode(self._llm))
+        # Use dedicated response_llm (may differ from reasoning llm)
+        workflow.add_node("response_generator", ResponseGeneratorNode(self._response_llm))
 
         # 3. Setup structural edges
         workflow.add_edge(START, "intent_analyzer")

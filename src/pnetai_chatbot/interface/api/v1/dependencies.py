@@ -77,8 +77,18 @@ def get_permission_service() -> PermissionService:
 
 
 def get_llm_adapter() -> Any:
-    """Provide the primary LLM adapter class."""
+    """Provide the primary LLM adapter class (for reasoning nodes)."""
     return LLMFactory.create_from_settings()
+
+
+def get_response_llm_adapter() -> Any:
+    """Provide the Response LLM adapter (for final answer generation).
+
+    Returns a separate adapter when ``RESPONSE_LLM_PROVIDER`` is set in .env,
+    e.g. a self-hosted fine-tuned model. Falls back to the primary LLM when
+    the setting is empty.
+    """
+    return LLMFactory.create_response_llm_from_settings()
 
 
 def get_tool_registry() -> ToolRegistry:
@@ -106,9 +116,15 @@ def get_tool_registry() -> ToolRegistry:
 def get_agent_orchestrator(
     registry: ToolRegistry = Depends(get_tool_registry),
     llm: Any = Depends(get_llm_adapter),
+    response_llm: Any = Depends(get_response_llm_adapter),
 ) -> Any:
-    """Compile and provide the executable LangGraph state graph."""
-    orchestrator = AgentOrchestrator(registry=registry, llm=llm)
+    """Compile and provide the executable LangGraph state graph.
+
+    The ``llm`` is used for all reasoning/tool-calling nodes, while
+    ``response_llm`` is dedicated to the final response_generator node.
+    When both resolve to the same provider, the orchestrator reuses it.
+    """
+    orchestrator = AgentOrchestrator(registry=registry, llm=llm, response_llm=response_llm)
     return orchestrator.build_agent_graph()
 
 

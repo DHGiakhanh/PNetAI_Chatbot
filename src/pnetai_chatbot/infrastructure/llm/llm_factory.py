@@ -40,6 +40,7 @@ class LLMFactory:
                 gemini_adapter,  # noqa: F401
                 ollama_adapter,  # noqa: F401
                 openai_adapter,  # noqa: F401
+                selfhosted_adapter,  # noqa: F401
             )
 
     @classmethod
@@ -52,7 +53,7 @@ class LLMFactory:
         """Create an LLM adapter instance.
 
         Args:
-            provider: Provider name (openai, anthropic, gemini, ollama).
+            provider: Provider name (openai, anthropic, gemini, ollama, selfhosted).
             model: Model name (uses default if not specified).
             **kwargs: Additional keyword args passed to the adapter.
 
@@ -100,6 +101,54 @@ class LLMFactory:
             model=settings.llm_model,
             **provider_kwargs,
         )
+
+    @classmethod
+    def create_response_llm_from_settings(cls) -> ILLMAdapter:
+        """Create the response LLM adapter from application settings.
+
+        When ``RESPONSE_LLM_PROVIDER`` is configured in the environment, a
+        separate adapter is returned — intended *only* for the final response
+        generation step. When it is empty, the primary reasoning LLM is
+        reused (no extra adapter is created).
+
+        Returns:
+            An initialized ILLMAdapter instance for response generation.
+        """
+        from pnetai_chatbot.infrastructure.config.settings import get_settings
+
+        settings = get_settings()
+        provider = settings.response_llm_provider.strip()
+
+        # No override configured -> reuse the primary reasoning LLM
+        if not provider:
+            logger.info(
+                "RESPONSE_LLM_PROVIDER not set; reusing primary LLM (%s) for response generation.",
+                settings.llm_provider,
+            )
+            return cls.create_from_settings()
+
+        model = settings.response_llm_model.strip() or settings.llm_model
+        provider_kwargs: dict[str, Any] = {}
+
+        if provider == "selfhosted":
+            provider_kwargs["base_url"] = settings.selfhosted_base_url
+            provider_kwargs["api_key"] = settings.selfhosted_api_key
+            provider_kwargs["timeout"] = settings.selfhosted_timeout
+        elif provider == "openai":
+            provider_kwargs["api_key"] = settings.openai_api_key
+        elif provider == "anthropic":
+            provider_kwargs["api_key"] = settings.anthropic_api_key
+        elif provider == "gemini":
+            provider_kwargs["api_key"] = settings.gemini_api_key
+        elif provider == "ollama":
+            provider_kwargs["host"] = settings.ollama_host
+
+        logger.info(
+            "Creating Response LLM adapter: provider=%s model=%s",
+            provider,
+            model,
+        )
+        return cls.create(provider=provider, model=model, **provider_kwargs)
 
     @classmethod
     def list_providers(cls) -> list[str]:

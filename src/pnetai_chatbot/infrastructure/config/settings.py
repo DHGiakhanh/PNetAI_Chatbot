@@ -38,6 +38,17 @@ class Settings(BaseSettings):
     anthropic_api_key: str = ""
     gemini_api_key: str = ""
 
+    # ---- LLM (Response / Final Answer) ----
+    # Khi được cấu hình, adapter này sẽ thay thế LLM chính CHỈ tại bước
+    # response_generator (sinh câu trả lời cuối). Để trống -> dùng llm_provider.
+    response_llm_provider: str = ""  # vd: "selfhosted", "ollama", "openai"
+    response_llm_model: str = ""     # Tên model; để trống -> dùng llm_model
+
+    # ---- Self-Hosted LLM (OpenAI-compatible server) ----
+    selfhosted_base_url: str = "http://localhost:8080/v1"
+    selfhosted_api_key: str = "not-required"
+    selfhosted_timeout: float = 60.0
+
     # ---- Ollama (Local Dev) ----
     ollama_host: str = "http://localhost:11434"
 
