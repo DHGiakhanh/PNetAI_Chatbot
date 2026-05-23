@@ -56,7 +56,7 @@ def setup_logging() -> None:
     root_logger.setLevel(log_level)
 
     # Suppress verbose third-party loggers
-    for verbose_logger in ["uvicorn.access", "httpx", "motor", "pymongo"]:
+    for verbose_logger in ["httpx", "motor", "pymongo"]:
         logging.getLogger(verbose_logger).setLevel(logging.WARNING)
 
     # Configure structlog

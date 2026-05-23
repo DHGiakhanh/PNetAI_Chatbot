@@ -27,7 +27,7 @@ class QdrantClientManager:
     def client(self) -> AsyncQdrantClient:
         """Return the underlying Qdrant async client (lazy init)."""
         if self._client is None:
-            self._client = AsyncQdrantClient(host=self._host, port=self._port)
+            self._client = AsyncQdrantClient(host=self._host, port=self._port, check_compatibility=False)
             logger.info("QdrantClient connected to %s:%d", self._host, self._port)
         return self._client
 
