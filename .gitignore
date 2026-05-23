@@ -1,0 +1,62 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+*.egg
+dist/
+build/
+*.so
+*.manifest
+*.spec
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Environment variables (contains secrets)
+.env
+!.env.example
+
+# ===== macOS (M1/M-series) =====
+.DS_Store
+._*
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+.AppleDB
+.AppleDesktop
+__MACOSX/
+.fseventsd
+
+# ===== IDE =====
+.idea/
+.vscode/settings.json
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+*.sublime-workspace
+*.sublime-project
+
+# ===== Docker =====
+docker-data/
+
+# ===== Testing =====
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
+*.cover
+.coverage.*
+
+# ===== uv / Python tooling =====
+# uv.lock is committed for reproducible builds
+
+# ===== Logs =====
+*.log
+logs/

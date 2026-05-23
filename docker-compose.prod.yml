@@ -1,0 +1,99 @@
+version: '3.8'
+
+services:
+  mongodb-chat:
+    image: mongo:7.0
+    container_name: pnetai_chat_db_prod
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_CHAT_USER:-petbot}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_CHAT_PASSWORD:-petbot_secret}
+      MONGO_INITDB_DATABASE: pnetai_chat
+    volumes:
+      - mongo_chat_prod_data:/data/db
+    networks:
+      - pnetai_prod_net
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1024M
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: pnetai_qdrant_prod
+    restart: unless-stopped
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant_prod_data:/qdrant/storage
+    networks:
+      - pnetai_prod_net
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1024M
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6333/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pnetai_app_prod
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_ENV=production
+      - LOG_LEVEL=INFO
+      - APP_HOST=0.0.0.0
+      - APP_PORT=8000
+      - LLM_PROVIDER=${LLM_PROVIDER:-openai}
+      - LLM_MODEL=${LLM_MODEL:-gpt-4o-mini}
+      - LLM_TEMPERATURE=${LLM_TEMPERATURE:-0.3}
+      - LLM_MAX_TOKENS=${LLM_MAX_TOKENS:-2048}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - TAVILY_API_KEY=${TAVILY_API_KEY}
+      - MONGODB_CHAT_URI=mongodb://${MONGODB_CHAT_USER:-petbot}:${MONGODB_CHAT_PASSWORD:-petbot_secret}@mongodb-chat:27017/pnetai_chat?authSource=admin
+      - MONGODB_WEBSITE_URI=${MONGODB_WEBSITE_URI}
+      - QDRANT_HOST=qdrant
+      - QDRANT_PORT=6333
+      - QDRANT_COLLECTION=${QDRANT_COLLECTION:-pet_knowledge_base}
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_ALGORITHM=${JWT_ALGORITHM:-HS256}
+      - RATE_LIMIT_GUEST=${RATE_LIMIT_GUEST:-30}
+      - RATE_LIMIT_MEMBER=${RATE_LIMIT_MEMBER:-100}
+    depends_on:
+      mongodb-chat:
+        condition: service_healthy
+      qdrant:
+        condition: service_healthy
+    networks:
+      - pnetai_prod_net
+    deploy:
+      resources:
+        limits:
+          cpus: '1.5'
+          memory: 1536M
+
+volumes:
+  mongo_chat_prod_data:
+  qdrant_prod_data:
+
+networks:
+  pnetai_prod_net:
+    driver: bridge
