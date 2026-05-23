@@ -1,1 +1,0 @@
-# src/petbot/interface package
