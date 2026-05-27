@@ -61,3 +61,7 @@ htmlcov/
 # ===== Logs =====
 *.log
 logs/
+
+# ===== Local Ingestion Data =====
+data/*
+!data/.gitkeep
