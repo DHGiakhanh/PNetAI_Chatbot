@@ -116,18 +116,32 @@ Lệnh này sẽ khởi chạy môi trường local bao gồm:
 * **MongoDB** (cổng `27017`) — Lưu trữ phiên và tin nhắn lịch sử.
 * **Qdrant** (cổng `6333` & `6334`) — Công cụ tìm kiếm vector.
 
-### Bước 3: Nạp dữ liệu tri thức mẫu (Seed Qdrant)
+### Bước 3: Nạp dữ liệu tri thức thực tế (Ingestion Pipeline)
 ```bash
-uv run python src/pnetai_chatbot/infrastructure/config/seed_data.py
+uv run python scripts/ingest/pipeline.py --data-dir ./data
 ```
-Kịch bản sẽ tự động tạo bộ vector tri thức cẩm nang chăm sóc thú cưng mẫu và chèn vào bộ nhớ Qdrant Vector Store.
-
+Script này sẽ quét thư mục `data/` để đọc các tệp JSON FAQ và PDF, tách đoạn, tạo embedding 1536‑dim và upsert vào collection `pet_knowledge_base` của Qdrant. Nó tuân theo cấu hình và bộ lọc dữ liệu đã mô tả trong `doc/qdrant-data-ingestion-planning.md`.
 ### Bước 4: Khởi chạy máy chủ API phát triển
 ```bash
 make run
 # Hoặc: uv run uvicorn pnetai_chatbot.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 Máy chủ dịch vụ sẽ vận hành tại địa chỉ: **http://localhost:8000**  
+Bạn có thể truy cập tài liệu API trực quan tại: **http://localhost:8000/docs**
+
+## 📦 Full Data Ingestion Pipeline
+
+The repository provides a production‑grade ingestion pipeline located in `scripts/ingest/`.  
+It parses JSON FAQ files and PDF manuals, splits text into chunks, generates 1536‑dimensional embeddings using the configured OpenAI model, and upserts them into the Qdrant collection defined in your `.env`.
+
+### Run the full ingestion
+
+```bash
+uv run python scripts/ingest/pipeline.py --data-dir ./data
+```
+
+Make sure the `.env` variables `QDRANT_HOST`, `QDRANT_PORT`, `QDRANT_COLLECTION`, and `OPENAI_API_KEY` are set.  
+After the pipeline finishes, you can query the newly indexed knowledge via the chatbot.
 Bạn có thể truy cập tài liệu API trực quan tại: **http://localhost:8000/docs**
 
 ---
