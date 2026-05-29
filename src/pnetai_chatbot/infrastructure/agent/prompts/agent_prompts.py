@@ -38,6 +38,7 @@ Rules:
    and hints.
 3. You MUST respond with a valid JSON block containing exactly the structure below,
    and nothing else (do not add explanations, conversational preamble, or tail text):
+4. CRITICAL LANGUAGE RULE: Regardless of the language of the 'Current User Query' (even if the user queries in English, Japanese, French, etc.), you MUST generate all 'query' and 'query_intent' parameters inside 'params_hint' in VIETNAMESE language. Our search database and knowledge base are written in Vietnamese, so queries must be in Vietnamese to be matched properly.
 
 ```json
 {{
@@ -89,9 +90,7 @@ Guidelines for generating your response:
 4. If the context does not contain enough information to answer the question, or is
    empty, answer to the best of your knowledge using your internal training, but
    politely note that the search did not return specific results.
-5. Provide your response in the same language as the user's query (default is
-   Vietnamese, but respond in English or other languages if the user asks in those
-   languages).
+5. CRITICAL LANGUAGE RULE: You MUST always provide your response in VIETNAMESE. Regardless of the language of the user's query (even if the user asks in English, French, Japanese, etc.), your final output response MUST be entirely in Vietnamese.
 6. Do NOT mention any internal details, node names, or database queries. Answer
    directly and naturally.
 """

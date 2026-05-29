@@ -50,9 +50,9 @@ class QdrantVectorSearchTool(IVectorStore):
             top_k,
         )
         try:
-            results = await self._client.search(
+            response = await self._client.query_points(
                 collection_name=self._collection_name,
-                query_vector=query_embedding,
+                query=query_embedding,
                 limit=top_k,
                 query_filter=filters,
                 with_payload=True,
@@ -64,7 +64,7 @@ class QdrantVectorSearchTool(IVectorStore):
                     score=float(r.score),
                     metadata=dict(r.payload) if r.payload else None,
                 )
-                for r in results
+                for r in response.points
             ]
         except Exception as e:
             logger.error("Qdrant similarity search failed: %s", e)

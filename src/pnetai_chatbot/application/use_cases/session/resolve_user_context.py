@@ -56,8 +56,13 @@ class ResolveUserContextUseCase:
         """
         is_auth = user_id is not None
 
-        # 1. If session_id is None, create a brand new persistent session
+        # 1. If session_id is None, create a brand new session (ephemeral for guest, persistent for auth)
         if session_id is None:
+            if not is_auth:
+                logger.info("Resolving context: creating ephemeral guest session")
+                session = ChatSession.create_ephemeral()
+                return session, []
+
             logger.info(
                 "Resolving context: creating new persistent session (is_auth=%s, user_id=%s)",
                 is_auth,

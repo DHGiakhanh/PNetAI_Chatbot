@@ -26,7 +26,7 @@ async def test_vector_search_tool_init() -> None:
 async def test_vector_search_tool_similarity_search_success() -> None:
     """Test that similarity_search successfully queries Qdrant and maps results."""
     mock_client = MagicMock(spec=AsyncQdrantClient)
-    mock_client.search = AsyncMock()
+    mock_client.query_points = AsyncMock()
 
     # Define mock ScoredPoints returned from Qdrant
     mock_point_1 = MagicMock()
@@ -47,7 +47,9 @@ async def test_vector_search_tool_similarity_search_success() -> None:
         "category": "healthcare",
     }
 
-    mock_client.search.return_value = [mock_point_1, mock_point_2]
+    mock_response = MagicMock()
+    mock_response.points = [mock_point_1, mock_point_2]
+    mock_client.query_points.return_value = mock_response
 
     tool = QdrantVectorSearchTool(client=mock_client, collection_name="test_kb")
     embedding = [0.1] * 1536
@@ -57,10 +59,10 @@ async def test_vector_search_tool_similarity_search_success() -> None:
         query_embedding=embedding, top_k=2, filters=filters
     )
 
-    # Assert client.search called with correct args
-    mock_client.search.assert_called_once_with(
+    # Assert client.query_points called with correct args
+    mock_client.query_points.assert_called_once_with(
         collection_name="test_kb",
-        query_vector=embedding,
+        query=embedding,
         limit=2,
         query_filter=filters,
         with_payload=True,
@@ -93,7 +95,7 @@ async def test_vector_search_tool_similarity_search_success() -> None:
 async def test_vector_search_tool_similarity_search_failure() -> None:
     """Test that similarity_search propagates exceptions raised by Qdrant."""
     mock_client = MagicMock(spec=AsyncQdrantClient)
-    mock_client.search = AsyncMock(side_effect=Exception("Qdrant unavailable"))
+    mock_client.query_points = AsyncMock(side_effect=Exception("Qdrant unavailable"))
 
     tool = QdrantVectorSearchTool(client=mock_client, collection_name="test_kb")
     embedding = [0.1] * 1536

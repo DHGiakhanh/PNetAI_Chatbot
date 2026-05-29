@@ -35,7 +35,7 @@ Rules for query generation:
    - NEVER generate operators like $where, $eval, $function, or $accumulator.
    - If querying the "orders" or "pets" collection, do not attempt to guess or search the user field, or query all records. The system will automatically inject the authenticated user's ID under the 'user' field in the filter. You should focus on generating filters for other fields (like status, items, name, breed, species, gender, age, etc.).
 7. Language Translation & Value Mapping Rules:
-   Since the user queries in Vietnamese but the database contains values in English, you MUST translate natural language concepts in the user query into their exact database English equivalents when generating the filter document:
+   Regardless of whether the user query/intent is in Vietnamese or English, you MUST translate and map the natural language concepts into their exact database English equivalents when generating the filter document:
    - For `pets` collection:
      * Species ("loài"): Translate "chó" -> "Dog", "mèo" -> "Cat", "chim" -> "Bird", "thỏ" -> "Rabbit", "chuột/chuột hamster" -> "Hamster", "khác" -> "Other". E.g., {{"species": "Dog"}}.
      * Gender ("giới tính"): Translate "đực/con đực" -> "Male", "cái/con cái" -> "Female", "không rõ" -> "Unknown". E.g., {{"gender": "Male"}}.

@@ -103,19 +103,19 @@ def test_validator_orders_collection_security() -> None:
     ):
         validator.validate(collection="orders", filter_query={})
 
-    # 2. Authenticated -> Inject user_id
+    # 2. Authenticated -> Inject user
     filter_q, _, _ = validator.validate(
         collection="orders", filter_query={"status": "delivered"}, user_id="user123"
     )
-    assert filter_q == {"status": "delivered", "user_id": "user123"}
+    assert filter_q == {"status": "delivered", "user": "user123"}
 
-    # 3. Inject overwrites LLM generated user_id for security
+    # 3. Inject overwrites LLM generated user for security
     filter_q2, _, _ = validator.validate(
         collection="orders",
-        filter_query={"user_id": "malicious_user", "status": "pending"},
+        filter_query={"user": "malicious_user", "status": "pending"},
         user_id="legit_user",
     )
-    assert filter_q2 == {"status": "pending", "user_id": "legit_user"}
+    assert filter_q2 == {"status": "pending", "user": "legit_user"}
 
 
 def test_validator_projection_validation() -> None:
